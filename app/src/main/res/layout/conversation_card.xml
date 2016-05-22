@@ -24,6 +24,17 @@
             android:layout_height="48dp" />
 
         <TextView
+            android:id="@+id/user_image_text"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+
+        <TextView
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,12 +49,12 @@
             android:id="@+id/user_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/user_name"
             android:layout_marginLeft="@dimen/text_8dp"
             android:layout_marginStart="@dimen/text_8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/text_8dp"
             android:layout_toEndOf="@+id/user_image"
             android:layout_toRightOf="@+id/user_image"
-            android:singleLine="true"
             android:textSize="14dp" />
     </RelativeLayout>
 

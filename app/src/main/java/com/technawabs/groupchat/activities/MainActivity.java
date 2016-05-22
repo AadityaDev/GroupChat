@@ -1,12 +1,16 @@
 package com.technawabs.groupchat.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
-import com.technawabs.groupchat.ChatAdapter;
+import com.technawabs.groupchat.Utility;
+import com.technawabs.groupchat.adapter.ChatAdapter;
+import com.technawabs.groupchat.customviews.ItemClickSupport;
 import com.technawabs.groupchat.network.Factory;
 import com.technawabs.groupchat.constatnts.GroupChatAPI;
 import com.technawabs.groupchat.R;
@@ -44,33 +48,17 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(linearLayoutManager);
         userInfoList = new ArrayList<UserInfo>();
-        initializeChatList();
+        Utility.initializeChatList(userInfoList, "");
         chatAdapter = new ChatAdapter(userInfoList);
         recList.setAdapter(chatAdapter);
         chatAdapter.notifyDataSetChanged();
-    }
-
-    public void initializeChatList() {
-        Request request = RequestGenerator.get(GroupChatAPI.GROUP_CHAT_URL);
-        try {
-            String response = RequestHandler.makeRequestAndValidate(request);
-            JSONObject result = new JSONObject(response);
-            for (int i = 0; i < result.getInt("count"); i++) {
-                JSONArray messages = result.getJSONArray("messages");
-                if (!messages.isNull(i)) {
-                    JSONObject message = messages.getJSONObject(i);
-                    Log.i(TAG, message.toString());
-                    final UserInfo userInfo = new UserInfo();
-                    userInfo.setName(message.getString("Name"));
-                    userInfo.setBody(message.getString("body"));
-                    userInfo.setUserName(message.getString("username"));
-                    userInfo.setImageUrl(message.getString("image-url"));
-                    userInfoList.add(userInfo);
-                }
+        ItemClickSupport.addTo(recList).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Intent intent = new Intent(MainActivity.this, User.class);
+                intent.putExtra("match", chatAdapter.getName(position));
+                startActivity(intent);
             }
-
-        } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-        }
+        });
     }
 }
