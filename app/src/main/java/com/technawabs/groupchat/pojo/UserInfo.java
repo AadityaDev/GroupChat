@@ -1,4 +1,4 @@
-package com.technawabs.groupchat;
+package com.technawabs.groupchat.pojo;
 
 public class UserInfo {
 

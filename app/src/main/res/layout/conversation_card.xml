@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:elevation="0dp"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/text_8dp"
+        android:layout_marginLeft="@dimen/text_8dp"
+        android:layout_marginRight="@dimen/text_8dp"
+        android:layout_marginStart="@dimen/text_8dp"
+        android:layout_marginTop="@dimen/activity_horizontal_margin">
+
+        <com.technawabs.groupchat.customviews.RoundedImageView
+            android:id="@+id/user_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_8dp"
+            android:layout_marginStart="@dimen/text_8dp"
+            android:layout_toEndOf="@+id/user_image"
+            android:layout_toRightOf="@+id/user_image"
+            android:singleLine="true"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/user_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_8dp"
+            android:layout_marginStart="@dimen/text_8dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/user_image"
+            android:layout_toRightOf="@+id/user_image"
+            android:singleLine="true"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
